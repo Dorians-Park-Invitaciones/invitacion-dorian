@@ -154,8 +154,18 @@ body {
     z-index: 104; /* Delante de las puertas */
     box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
 }
-.pilar-izquierdo { left: 0; border-right: 4px solid #212121; }
-.pilar-derecho { right: 0; border-left: 4px solid #212121; }
+
+.pilar-izquierdo { 
+    left: 0; 
+    border-right: 4px solid #212121;
+    clip-path: polygon(0 0, 100% 20%, 100% 100%, 0% 100%); /* Esto le da la inclinación de piedra */
+}
+
+.pilar-derecho { 
+    right: 0; 
+    border-left: 4px solid #212121;
+    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0% 100%); /* Inclinación hacia el otro lado */
+}
 
 /* Antorchas y Fuego */
 .antorcha {
