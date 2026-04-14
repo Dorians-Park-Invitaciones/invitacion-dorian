@@ -1,0 +1,497 @@
+/* ==============================================================
+   CONFIGURACIONES GENERALES
+   ============================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;600&family=Lato:300,300italic,600&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    font-family: 'Poppins', sans-serif;
+    scrollbar-width: none; /* Oculta la barra de scroll en Firefox */
+}
+
+/* Oculta la barra de scroll en Chrome/Safari */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* ==============================================================
+   PANTALLA DE INICIO (TELÓN)
+   ============================================================== */
+.video-fondo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 160%;
+    object-fit: cover; /* Evita que el video se deforme */
+    z-index: -1; /* Lo manda al fondo, detrás del pastel y el texto */
+    opacity: 0.7; /* Opcional: lo hace un poco transparente para que el texto se lea mejor */
+}
+   
+/* =========================================
+   ANIMACIÓN DE FIGURAS FLOTANTES
+   ========================================= */
+/* Estilo general para ambas imágenes */
+.gif-esquina-izquierda,
+.gif-esquina-derecha {
+    position: fixed; /* O 'absolute', según prefieras */
+    top: 0;         /* Pegado al borde superior */
+    width: 150px;   /* Ajusta el tamaño que desees */
+    height: auto;   /* Mantiene la proporción */
+    z-index: 0;  /* Asegura que esté por encima del contenido */
+}
+
+/* Específico para la izquierda */
+.gif-esquina-izquierda {
+    left: 0;        /* Pegado al borde izquierdo */
+    /* Opcional: añade un pequeño margen */
+    /* left: 10px; */
+    /* top: 10px; */
+}
+
+/* Específico para la derecha */
+.gif-esquina-derecha {
+    right: 20px;       /* Pegado al borde derecho */
+    /* Opcional: añade un pequeño margen */
+    /* right: 10px; */
+    top: 20px;
+}
+
+.elementos-flotantes {
+    position: fixed; /* Se queda fijo en la pantalla */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* ¡SÚPER IMPORTANTE! Evita que las figuras bloqueen tus botones */
+    z-index: 0; /* Lo manda al fondo, detrás de la invitación principal */
+    overflow: hidden;
+}
+
+.figura {
+    position: absolute;
+    bottom: -100px; /* Empiezan escondidos abajo de la pantalla */
+    font-size: 45px; /* Tamaño de los emojis */
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); /* Sombrita para que resalten */
+    animation: flotar-bailar 10s linear infinite; /* Animación infinita */
+}
+
+/* El recorrido: Sube y da vueltas */
+@keyframes flotar-bailar {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1; /* Aparece suavemente */
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-120vh) rotate(360deg) scale(1.2); /* Sube más allá de la pantalla girando */
+        opacity: 0; /* Desaparece al final */
+    }
+}
+
+/* Posiciones, tamaños y velocidades aleatorias para cada figura */
+.f1 { left: 10%; animation-duration: 15s; animation-delay: 0s; font-size: 50px; }
+.f2 { left: 25%; animation-duration: 12s; animation-delay: 2s; font-size: 35px; }
+.f3 { left: 45%; animation-duration: 18s; animation-delay: 4s; font-size: 60px; }
+.f4 { left: 65%; animation-duration: 14s; animation-delay: 1s; font-size: 40px; }
+.f5 { left: 80%; animation-duration: 16s; animation-delay: 5s; font-size: 45px; }
+.f6 { left: 90%; animation-duration: 13s; animation-delay: 3s; font-size: 55px; }
+.f7 { left: 50%; animation-duration: 17s; animation-delay: 7s; font-size: 40px; }
+
+/* --- Pantalla de Inicio: Puertas de Dorian's Park --- */
+.pantalla-inicio {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0; left: 0;
+    background-color: #1a1a1a; /* Fondo oscuro detrás de las puertas */
+    z-index: 100;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    transition: opacity 1s ease; /* Para que al final se desvanezca todo suavemente */
+}
+
+/* El Arco Superior */
+.arco-superior {
+    position: absolute;
+    top: 5%;
+    width: 85%;
+    background-color: #424242; /* Color piedra */
+    border-radius: 40px 40px 0 0; /* Curva de arriba */
+    border: 3px solid #212121;
+    z-index: 105;
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.8);
+}
+
+.arco-superior h2 {
+    color: #d32f2f; /* Rojo */
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.8rem;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: 2px;
+    /* Sombras para simular el contorno amarillo y el relieve 3D */
+    text-shadow: -2px -2px 0 #ffeb3b, 2px -2px 0 #ffeb3b, -2px 2px 0 #ffeb3b, 2px 2px 0 #ffeb3b, 4px 4px 5px #000;
+}
+
+/* Los Pilares de Piedra */
+.pilar {
+    position: absolute;
+    top: 0;
+    width: 15%; /* Pilares anchos a los lados */
+    height: 100%;
+    background-color: #424242; /* Color piedra */
+    z-index: 104; /* Delante de las puertas */
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+}
+.pilar-izquierdo { left: 0; border-right: 4px solid #212121; }
+.pilar-derecho { right: 0; border-left: 4px solid #212121; }
+
+/* Antorchas y Fuego */
+.antorcha {
+    position: absolute;
+    width: 20px;
+    height: 25px;
+    background-color: #3e2723;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0 0 5px 5px;
+}
+.fuego-puerta {
+    position: absolute;
+    top: -25px; left: 0;
+    width: 20px; height: 30px;
+    background: #ff9800;
+    border-radius: 50% 50% 20% 20%;
+    animation: titilar-fuego 0.3s infinite alternate;
+}
+@keyframes titilar-fuego {
+    0% { transform: scale(1) translateY(0); background: #ff9800; box-shadow: 0 0 10px #ff9800; }
+    100% { transform: scale(1.1) translateY(-2px); background: #ffeb3b; box-shadow: 0 0 20px #ffeb3b; }
+}
+
+/* Las Puertas de Madera */
+.puerta {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background-color: #3e2723; /* Madera oscura */
+    /* Efecto de tablas de madera */
+    background-image: repeating-linear-gradient(to right, transparent, transparent 38px, rgba(0,0,0,0.4) 40px);
+    z-index: 100;
+    transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1); /* Movimiento pesado y lento */
+}
+.puerta-izquierda { left: 0; border-right: 4px solid #1a100e; }
+.puerta-derecha { right: 0; border-left: 4px solid #1a100e; }
+
+/* Vigas de las puertas */
+.viga {
+    position: absolute;
+    background-color: #27150c;
+    border: 2px solid #1a100e;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.8);
+}
+.viga.horizontal { width: 100%; height: 50px; top: 40%; }
+.viga.diagonal-izq { width: 150%; height: 50px; top: 40%; left: -20%; transform: rotate(35deg); }
+.viga.diagonal-der { width: 150%; height: 50px; top: 40%; left: -20%; transform: rotate(-35deg); }
+
+
+/* Clases para Animación JavaScript */
+.puerta-izquierda.abierta { transform: translateX(-100%); }
+.puerta-derecha.abierta { transform: translateX(100%); }
+.oculto { opacity: 0; pointer-events: none; }
+
+/* El contenido (letras y botón) debe estar hasta enfrente */
+/* --- El contenido de inicio (Asegurado para estar al frente) --- */
+.contenido-inicio {
+    position: absolute; /* Cambiamos a absoluto para forzarlo a flotar */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el bloque perfectamente */
+    z-index: 9999; /* Un número gigante para asegurar que las puertas NUNCA lo tapen */
+    
+    color: #e8f5e9;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: opacity 0.5s ease;
+    width: 100%; /* Evita que el texto se apachurre */
+}
+
+#btn-abrir {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Fredoka One', cursive;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    animation: latido 1.5s infinite;
+}
+
+@keyframes latido {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* ==============================================================
+   ESTRUCTURA DE LA INVITACIÓN (FORMATO MÓVIL)
+   ============================================================== */
+/* 1. El contenedor principal (Le quitamos la imagen directa) */
+.contenedor-principal {
+    max-width: 500px; /* Tamaño de celular */
+    margin: 0 auto;
+    background-color: #96ebaf; /* Fondo de respaldo jurásico */
+    min-height: 100vh;
+    position: relative; /* VITAL para que el fondo no se escape */
+    overflow-x: hidden; 
+    text-align: center;
+    padding-bottom: 120px; 
+    box-shadow: 0 0 15px rgba(0,0,0,0.5); 
+    z-index: 1; /* Mantiene todo el contenido (texto, botones) al frente */
+}
+
+/* 2. El "Clon" que lleva la imagen y el desenfoque */
+.contenedor-principal::before {
+    content: ""; /* Obligatorio para que exista el clon */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background-image: url('Imagenes/Fondo1.jpg');
+    /*background-size: cover; /* Asegura que la imagen llene el espacio */
+    background-position: center; /* Centra la imagen */
+    
+    filter: blur(5px); /* <--- AQUÍ ESTÁ LA MAGIA. Ajusta el 8px a más o menos borroso */
+    
+    z-index: -1; /* Lo empuja justo detrás de tu texto y contenido */
+    opacity: 0.8; /* Opcional: baja un poco la opacidad si quieres que se mezcle con el verde #96ebaf */
+}
+
+.encabezado {
+    padding-top: 30px;
+}
+
+h1.nombre {
+    font-family: 'Fredoka One', cursive;
+    font-size: 50px;
+    color: #388e3c;
+    margin: 10px 0;
+    text-shadow: 2px 2px #fff;
+}
+
+h2, h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 35px;
+    color: #1358ed;
+}
+
+p.cita {
+    color: #4a4a4a;
+    font-size: 1.1rem;
+    margin-top: 0;
+    font-style: italic;
+}
+
+/* ==============================================================
+   EL PASTEL ANIMADO (SVG + CSS)
+   ============================================================== */
+.seccion-pastel {
+    margin: 20px 0;
+}
+
+.contenedor-pastel-svg {
+    position: relative;
+    width: 200px;
+    height: 520px; /* Altura original del SVG */
+    margin: 0 auto;
+    transform: scale(0.7); /* Lo hacemos un poco más pequeño para celular */
+    margin-top: -320px; 
+    margin-bottom: -120px;
+}
+
+/* La vela cayendo */
+.vela-cayendo {
+    background: #ffffff;
+    border-radius: 10px;
+    position: absolute;
+    top: 380px;
+    left: 50%;
+    margin-left: -2.4px;
+    margin-top: -8.3px;
+    width: 5px;
+    height: 35px;
+    transform: translateY(-300px); /* Inicia arriba escondida */
+    opacity: 0; 
+    z-index: 10;
+}
+
+.vela-cayendo:after, .vela-cayendo:before {
+    background: rgba(255, 0, 0, 0.4);
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2.2px;
+}
+.vela-cayendo:after { top: 25%; left: 0; }
+.vela-cayendo:before { top: 45%; left: 0; }
+
+/* El fuego de la vela */
+.fuego {
+    border-radius: 100%;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    margin-left: -2.6px;
+    width: 6.6px;
+    height: 18px;
+}
+.fuego:nth-child(1) { animation: fuego 2s infinite; }
+.fuego:nth-child(2) { animation: fuego 1.5s infinite; }
+.fuego:nth-child(3) { animation: fuego 1s infinite; }
+.fuego:nth-child(4) { animation: fuego 0.5s infinite; }
+.fuego:nth-child(5) { animation: fuego 0.2s infinite; }
+
+@keyframes fuego {
+    0%, 100% {
+        background: rgba(254, 248, 97, 0.5);
+        box-shadow: 0 0 40px 10px rgba(248, 233, 209, 0.2);
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        background: rgba(255, 50, 0, 0.1);
+        box-shadow: 0 0 40px 20px rgba(248, 233, 209, 0.2);
+        transform: translateY(-20px) scale(0);
+    }
+}
+
+/* Animación activada por JS al abrir la invitación */
+.caer-vela {
+    /* 3.5s es el tiempo que tarda el pastel SVG en construirse */
+    animation: inVela 500ms 3.5s ease-out forwards; 
+}
+
+@keyframes inVela {
+    0% { transform: translateY(-300px); opacity: 1; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Texto del pastel original (opcional) */
+.mensaje-pastel {
+    position: absolute;
+    bottom: -10px;
+    width: 100%;
+    text-align: center;
+    color: #8b6a60;
+    font-family: 'Lato', sans-serif;
+}
+
+.mensaje-pastel h2 { font-size: 1.4em; font-weight: 300; font-style: italic; margin: 0; }
+.mensaje-pastel p { font-size: 1.1rem; font-weight: 600; margin: 5px 0 0 0; }
+
+/* ==============================================================
+   CONTADOR REGRESIVO
+   ============================================================== */
+.seccion-datos {
+    margin-top: 30px;
+}
+
+.fecha, .hora {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 5px 0;
+}
+
+.contador {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.tiempo {
+    background-color: #388e3c;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    min-width: 50px;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
+
+.tiempo span { font-size: 24px; font-weight: bold; }
+.tiempo p { margin: 0; font-size: 12px; text-transform: uppercase; }
+
+/* ==============================================================
+   BOTONES DE ACCIÓN
+   ============================================================== */
+.seccion-botones {
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 20px;
+    border-radius: 20px;
+    margin: 0 20px;
+}
+
+.btn-accion {
+    display: inline-block;
+    padding: 15px 25px;
+    border-radius: 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    margin: 10px 0;
+    width: 80%;
+    transition: transform 0.2s;
+}
+
+.btn-accion:active {
+    transform: scale(0.95);
+}
+
+.mapa { background-color: #0288d1; }
+.whats { background-color: #25d366; }
+
+/* ==============================================================
+   ANIMACIÓN DEL DINOSAURIO
+   ============================================================== */
+.dinosaurio {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    pointer-events: none; /* Permite hacer clic en cosas detrás del dino */
+    z-index: 50; /* Lo mantiene sobre el fondo */
+}
+
+.dinosaurio img {
+    width: 150px; 
+    position: absolute;
+    bottom: 0;
+    animation: caminar 12s linear infinite; 
+}
+
+@keyframes caminar {
+    0% { left: -200px; transform: scaleX(1); } /* Entra por la izquierda */
+    45% { left: 100vw; transform: scaleX(1); } /* Llega a la derecha */
+    50% { left: 100vw; transform: scaleX(-1); } /* Se voltea */
+    95% { left: -200px; transform: scaleX(-1); } /* Regresa a la izquierda */
+    100% { left: -200px; transform: scaleX(1); } /* Se vuelve a voltear */
+}
