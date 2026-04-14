@@ -20,14 +20,17 @@ body {
    PANTALLA DE INICIO (TELÓN)
    ============================================================== */
 .video-fondo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 160%;
-    object-fit: cover; /* Evita que el video se deforme */
-    z-index: -1; /* Lo manda al fondo, detrás del pastel y el texto */
-    opacity: 0.7; /* Opcional: lo hace un poco transparente para que el texto se lea mejor */
+    position: fixed; /* Cambiado de absolute a fixed */
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    transform: translate(-50%, -50%); /* Lo centra perfecto */
+    object-fit: cover;
+    opacity: 0.6;
 }
    
 /* =========================================
@@ -36,28 +39,16 @@ body {
 /* Estilo general para ambas imágenes */
 .gif-esquina-izquierda,
 .gif-esquina-derecha {
-    position: fixed; /* O 'absolute', según prefieras */
-    top: 0;         /* Pegado al borde superior */
-    width: 150px;   /* Ajusta el tamaño que desees */
-    height: auto;   /* Mantiene la proporción */
-    z-index: 0;  /* Asegura que esté por encima del contenido */
+    position: fixed;
+    top: 10px;
+    width: 18vw;      /* Basado en el ancho de la pantalla */
+    max-width: 100px;  /* Nunca más grande de 100px */
+    height: auto;
+    z-index: 0;      /* Subimos el z-index para que se vean sobre todo */
 }
 
-/* Específico para la izquierda */
-.gif-esquina-izquierda {
-    left: 0;        /* Pegado al borde izquierdo */
-    /* Opcional: añade un pequeño margen */
-    /* left: 10px; */
-    /* top: 10px; */
-}
-
-/* Específico para la derecha */
-.gif-esquina-derecha {
-    right: 20px;       /* Pegado al borde derecho */
-    /* Opcional: añade un pequeño margen */
-    /* right: 10px; */
-    top: 20px;
-}
+.gif-esquina-izquierda { left: 5px; }
+.gif-esquina-derecha { right: 5px; top: 10px; }
 
 .elementos-flotantes {
     position: fixed; /* Se queda fijo en la pantalla */
@@ -263,16 +254,17 @@ body {
    ============================================================== */
 /* 1. El contenedor principal (Le quitamos la imagen directa) */
 .contenedor-principal {
-    max-width: 500px; /* Tamaño de celular */
-    margin: 0 auto;
-    background-color: #96ebaf; /* Fondo de respaldo jurásico */
+    width: 95%;           /* Ocupa casi todo el ancho en cel */
+    max-width: 450px;      /* Se queda como celular en la compu */
+    margin: 0 auto;        /* Centrado horizontal */
+    background-color: #96ebaf; 
     min-height: 100vh;
-    position: relative; /* VITAL para que el fondo no se escape */
+    position: relative;
     overflow-x: hidden; 
     text-align: center;
     padding-bottom: 120px; 
-    box-shadow: 0 0 15px rgba(0,0,0,0.5); 
-    z-index: 1; /* Mantiene todo el contenido (texto, botones) al frente */
+    box-shadow: 0 0 50px rgba(0,0,0,0.5); /* Sombra más fuerte para la compu */
+    z-index: 1;
 }
 
 /* 2. El "Clon" que lleva la imagen y el desenfoque */
