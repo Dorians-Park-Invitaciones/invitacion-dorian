@@ -280,7 +280,7 @@ body {
     /*background-size: cover; /* Asegura que la imagen llene el espacio */
     background-position: center; /* Centra la imagen */
     
-    filter: blur(5px); /* <--- AQUÍ ESTÁ LA MAGIA. Ajusta el 8px a más o menos borroso */
+    filter: blur(10px); /* <--- AQUÍ ESTÁ LA MAGIA. Ajusta el 8px a más o menos borroso */
     
     z-index: -1; /* Lo empuja justo detrás de tu texto y contenido */
     opacity: 0.8; /* Opcional: baja un poco la opacidad si quieres que se mezcle con el verde #96ebaf */
@@ -309,6 +309,59 @@ p.cita {
     font-size: 1.1rem;
     margin-top: 0;
     font-style: italic;
+}
+
+/* ==============================================================
+   DISEÑO AUTOMÁTICO DEL NOMBRE 3D CON CONTORNO GRIS OXFORD
+   ============================================================== */
+.nombre-3d {
+    font-family: 'Fredoka One', cursive; 
+    /* Tamaño adaptable: Grande en PC, justo en celular */
+    font-size: clamp(35px, 10vw, 60px); 
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin: 15px auto;
+    letter-spacing: 2px;
+    display: block;
+    max-width: 95%; /* Evita que choque en bordes de celular */
+    text-align: center;
+}
+
+/* --- ESTE ES EL SELECTOR QUE HACE EL EFECTO AUTOMÁTICAMENTE --- */
+.nombre-3d span {
+    display: inline-block;
+    padding: 2px;
+    position: relative; /* Necesario para la capa de contorno */
+
+    /* 1. EL CONTORNO SÓLIDO (Gris Oxford: #37474F) */
+    /* Asegura que el borde no "se coma" el color de adentro */
+    -webkit-text-stroke: 3px #37474F; 
+    paint-order: stroke fill; /* Primero dibuja el borde, luego el color */
+    
+    /* 2. EL VOLUMEN AUTOMÁTICO (Capas del mismo Gris Oxford) */
+    /* Apilamos sombras sólidas y oscuras para crear el grosor 3D */
+    text-shadow: 
+        1px 1px 0 #37474F,
+        2px 2px 0 #37474F,
+        3px 3px 0 #37474F,
+        4px 4px 0 #37474F,
+        /* Sombra suave al final para "despegarlo" de la invitación */
+        6px 6px 15px rgba(0,0,0,0.5);
+}
+
+/* --- COLORES VIBRANTES POR LETRA (Se mantienen igual) --- */
+.l1, .l8  { color: #FFD700; } /* Amarillo */
+.l2, .l9  { color: #FF5733; } /* Naranja/Rojo */
+.l3, .l10 { color: #33FF57; } /* Verde */
+.l4, .l11 { color: #3357FF; } /* Azul */
+.l5, .l12 { color: #F333FF; } /* Rosa */
+.l6, .l13 { color: #33FFF3; } /* Cian */
+.l7       { color: #FF8C00; } /* Naranja oscuro */
+
+/* --- Animación de rebote (Opcional, se mantiene igual) --- */
+.nombre-3d span:hover {
+    transform: translateY(-8px) scale(1.1);
+    transition: 0.2s ease-out;
 }
 
 /* ==============================================================
