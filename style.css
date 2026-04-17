@@ -435,10 +435,10 @@ p.cita {
 .contenedor-pastel-svg {
     position: relative;
     width: 200px; 
-    height: 520px;
+    height: 620px;
     margin: 0 auto;
     transform: scale(1); /* Lo mantiene a buen tamaño */
-    margin-top: -420px; 
+    margin-top: -320px; 
     margin-bottom: -120px;
     z-index: -1;
 }
