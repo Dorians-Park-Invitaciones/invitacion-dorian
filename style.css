@@ -633,7 +633,7 @@ p.cita {
 
     /* 2. Ajustes en la Tarjeta Principal */
     .contenedor-principal {
-        width: 70%; /* En celular aprovecha casi toda la pantalla */
+        width: 73%; /* En celular aprovecha casi toda la pantalla */
         margin: 15px auto; /* Menos espacio en blanco arriba y abajo */
         border-radius: 20px;
     }
