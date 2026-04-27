@@ -426,6 +426,56 @@ p.cita {
 }
 
 /* ==============================================================
+   ESTILO DEL SUBTÍTULO (BLANCO CON CONTORNO NEGRO)
+   ============================================================== */
+.subtitulo-blanco {
+    font-family: 'Fredoka One', cursive; 
+    font-size: clamp(24px, 7vw, 35px); /* Se adapta al celular */
+    color: #FFFFFF; /* Texto color blanco puro */
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin: 5px auto 15px auto;
+    letter-spacing: 2px;
+    display: block;
+    text-align: center;
+    position: relative;
+    z-index: 20;
+
+    /* Aquí hacemos el contorno negro grueso */
+    -webkit-text-stroke: 2.5px #000000; 
+    paint-order: stroke fill; 
+    
+    /* Le ponemos una pequeña sombra dura para darle el toque final de "sticker" */
+    text-shadow: 3px 3px 0px #000000;
+}
+
+/* ==============================================================
+   ESTILO "GLOBO AZUL" (IGUAL AL DE GAEL)
+   ============================================================== */
+
+   .nombre-3d span {
+    display: inline-block;
+    padding: 2px;
+    position: relative; 
+    
+    /* Color del globo azul */
+    color: #00BFFF; 
+    
+    /* Contorno negro grueso */
+    -webkit-text-stroke: 4px #000000; 
+    paint-order: stroke fill; 
+    
+    /* Sombra para que parezca inflado */
+    text-shadow: 
+        0px 2px 0px #000000,
+        0px 4px 5px rgba(0,0,0,0.5); 
+    
+    /* Mantenemos tu animación de ola pero ahora con el color azul fijo */
+    animation: ola-estadio 3.5s infinite;
+    transform-origin: bottom center;
+}
+
+/* ==============================================================
    EL PASTEL ANIMADO (SVG + CSS)
    ============================================================== */
 .seccion-pastel {
