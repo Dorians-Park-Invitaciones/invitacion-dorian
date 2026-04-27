@@ -57,3 +57,62 @@ const intervalo = setInterval(function() {
         document.querySelector(".contador").innerHTML = "<h3>¡La fiesta ha comenzado!</h3>";
     }
 }, 1000);
+
+// ==============================================================
+// MOTOR DE LA GALERÍA DE FOTOS (ARRANCA AL HACER SCROLL)
+// ==============================================================
+document.addEventListener("DOMContentLoaded", () => {
+    
+    const fotos = document.querySelectorAll('.foto-slide');
+    const seccionGaleria = document.querySelector('.seccion-galeria');
+    let fotoActual = 0; 
+    let intervaloGaleria; // Guardará el temporizador
+    let yaInicio = false; // Control para saber si ya arrancó la primera vez
+
+    if (fotos.length > 0 && seccionGaleria) {
+        
+        // Función que hace el cambio de fotos
+        const cambiarFoto = () => {
+            fotos[fotoActual].classList.remove('activa'); // Apaga la actual
+            fotoActual++; // Pasa a la siguiente
+            
+            if (fotoActual >= fotos.length) {
+                fotoActual = 0; // Reinicia si llega al final
+            }
+            
+            fotos[fotoActual].classList.add('activa'); // Enciende la nueva
+        };
+
+        // Creamos al "vigilante" que revisará cuándo llegas a la galería
+        const observadorGaleria = new IntersectionObserver((entradas) => {
+            entradas.forEach(entrada => {
+                
+                // Si la galería ya es visible en la pantalla (al menos un 30%)
+                if (entrada.isIntersecting) {
+                    
+                    // Si es la primera vez que la vemos, arrancamos la secuencia
+                    if (!yaInicio) {
+                        // Aseguramos que inicie exactamente en la foto 1 (posición 0)
+                        fotoActual = 0;
+                        fotos.forEach(f => f.classList.remove('activa'));
+                        fotos[0].classList.add('activa');
+                        
+                        // Arranca el cambio automático cada 1.5 segundos
+                        intervaloGaleria = setInterval(cambiarFoto, 2500);
+                        yaInicio = true; // Marcamos que ya arrancó para no duplicar tiempos
+                    }
+                } else {
+                    // Opcional: Si el usuario vuelve a subir, pausamos la galería 
+                    // para ahorrar batería en el celular.
+                    clearInterval(intervaloGaleria);
+                    yaInicio = false; 
+                }
+            });
+        }, {
+            threshold: 0.3 // Se activa cuando el 30% de la foto ya entró a la pantalla
+        });
+
+        // Le decimos al vigilante que se ponga a observar la sección
+        observadorGaleria.observe(seccionGaleria);
+    }
+});
