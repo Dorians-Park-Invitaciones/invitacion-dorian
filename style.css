@@ -57,7 +57,7 @@ body {
     width: 100%;
     height: 100%;
     pointer-events: none; /* ¡SÚPER IMPORTANTE! Evita que las figuras bloqueen tus botones */
-    z-index: 0; /* Lo manda al fondo, detrás de la invitación principal */
+    z-index: 1.5; /* Lo manda al fondo, detrás de la invitación principal */
     overflow: hidden;
 }
 
@@ -633,7 +633,7 @@ p.cita {
 
     /* 2. Ajustes en la Tarjeta Principal */
     .contenedor-principal {
-        width: 73%; /* En celular aprovecha casi toda la pantalla */
+        width: 80%; /* En celular aprovecha casi toda la pantalla */
         margin: 15px auto; /* Menos espacio en blanco arriba y abajo */
         border-radius: 20px;
     }
@@ -692,4 +692,55 @@ p.cita {
     .dinosaurio img {
         width: 110px; /* Dinosaurio caminador un poquito más pequeño */
     }
+}
+
+/* ==============================================================
+   GALERÍA DE FOTOS SECUENCIAL (CON RESPLANDOR)
+   ============================================================== */
+.seccion-galeria {
+    width: 90%;
+    max-width: 500px; /* Tamaño máximo para que no se vea gigante en computadora */
+    margin: 40px auto 80px auto; /* Espacio arriba y mucho espacio abajo */
+    text-align: center;
+    position: relative;
+    z-index: 5;
+}
+
+.titulo-galeria {
+    font-family: 'Fredoka One', cursive;
+    font-size: 35px;
+    color: #ffeb3b; /* Amarillo brillante */
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+    margin-bottom: 25px;
+}
+
+.slider-fotos {
+    position: relative;
+    width: 100%;
+    /* ¡AQUÍ ESTÁ EL CAMBIO! Formato rectangular panorámico */
+    aspect-ratio: 9 / 16; 
+    margin: 0 auto;
+}
+
+.foto-slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Recorta la foto perfecto para que no se deforme */
+    border-radius: 20px;
+    border: 4px solid #37474F; /* Marco gris oscuro jurásico */
+    opacity: 0; /* Todas invisibles por defecto */
+    
+    /* Esta transición hace que el cambio sea suave como un desvanecimiento */
+    transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* La magia: esto se aplica solo a la foto que le toca mostrarse */
+.foto-slide.activa {
+    opacity: 1; /* Se vuelve visible */
+    transform: scale(1.05); /* Hace un pequeño zoom hacia adelante */
+    /* Aquí está el EFECTO DE RESPLANDOR */
+    box-shadow: 0 0 35px rgba(255, 215, 0, 0.9), 0 0 10px rgba(255, 255, 255, 0.5); 
+    z-index: 2; /* Se asegura de estar al frente */
 }
