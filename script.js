@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         fotos[0].classList.add('activa');
                         
                         // Arranca el cambio automático cada 1.5 segundos
-                        intervaloGaleria = setInterval(cambiarFoto, 2500);
+                        intervaloGaleria = setInterval(cambiarFoto, 5200);
                         yaInicio = true; // Marcamos que ya arrancó para no duplicar tiempos
                     }
                 } else {
